@@ -26,7 +26,7 @@ def create_task(host, port, type_, text):
         if req.status_code != 200:
             print(req.json())
         else:
-            print(req.content)
+            print(f"id: {req.json()['id']}")
     except ConnectionError:
         print("invalid address")
 
