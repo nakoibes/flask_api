@@ -14,13 +14,7 @@ class TaskHandler:
 
     def handle_task(self):
         while True:
-            # task = self._task_repository.get_task()
-            # print(task)
-            # task_type, task_text, task_id = task.type.value, task.text, task.id
-            # print('++++++++++++++')
-            # task_type, task_text, task_id = self._task_repository.get_first_task_in_queue()
             task_id, task_text, task_type = self._queue.get()
-            # print(self.queue)
             if task_id:
                 self._repository.update_status(task_id, TaskStatus("IN_PROGRESS"))
                 self._handle_task(task_id, task_type, task_text)
