@@ -28,19 +28,25 @@ def create_task(host, port, type_, text):
         else:
             print(f"id: {req.json()['id']}")
     except ConnectionError:
-        print("invalid address")
+        print("invalid address or port")
 
 
 def get_status(host, port, id_):
-    ans = requests.get(f"http://{host}:{port}/tasks/{id_}").content.decode()
-    ans = json.loads(ans)
-    print(f"status: {ans.get('status')}")
+    try:
+        ans = requests.get(f"http://{host}:{port}/tasks/{id_}").content.decode()
+        ans = json.loads(ans)
+        print(f"status: {ans.get('status')}")
+    except ConnectionError:
+        print("invalid address or port")
 
 
 def get_result(host, port, id_):
-    ans = requests.get(f"http://{host}:{port}/tasks/{id_}").content.decode()
-    ans = json.loads(ans)
-    print(f"result: {ans.get('result')}")
+    try:
+        ans = requests.get(f"http://{host}:{port}/tasks/{id_}").content.decode()
+        ans = json.loads(ans)
+        print(f"result: {ans.get('result')}")
+    except ConnectionError:
+        print("invalid address or port")
 
 
 if __name__ == '__main__':
