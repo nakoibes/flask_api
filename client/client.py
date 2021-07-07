@@ -1,6 +1,6 @@
 import click
 import requests
-from requests.exceptions import ConnectionError
+from requests.exceptions import ConnectionError, HTTPError
 import json
 
 
@@ -25,30 +25,34 @@ def main(host, port, action, type, text, id):
 def create_task(host, port, type_, text):
     try:
         req = requests.post(f"http://{host}:{port}/tasks", json={"type": type_, "text": text})
-        if req.status_code != 200:
-            print(req.json())
-        else:
-            print(f"id: {req.json()['id']}")
+        req.raise_for_status()
+        print(f"id: {req.json()['id']}")
     except ConnectionError:
         print("Invalid address or port")
+    except HTTPError as err:
+        print(err)
 
 
 def get_status(host, port, id_):
     try:
-        ans = requests.get(f"http://{host}:{port}/tasks/{id_}").content.decode()
-        ans = json.loads(ans)
-        print(f"status: {ans.get('status')}")
+        ans = requests.get(f"http://{host}:{port}/tasks/{id_}")
+        ans.raise_for_status()
+        print(f"status: {ans.json().get('status')}")
     except ConnectionError:
         print("Invalid address or port")
+    except HTTPError as err:
+        print(err)
 
 
 def get_result(host, port, id_):
     try:
-        ans = requests.get(f"http://{host}:{port}/tasks/{id_}").content.decode()
-        ans = json.loads(ans)
-        print(f"result: {ans.get('result')}")
+        ans = requests.get(f"http://{host}:{port}/tasks/{id_}")
+        ans.raise_for_status()
+        print(f"result: {ans.json().get('result')}")
     except ConnectionError:
         print("Invalid address or port")
+    except HTTPError as err:
+        print(err)
 
 
 if __name__ == '__main__':
