@@ -1,7 +1,7 @@
 from multiprocessing import Process
 from pymongo import MongoClient
 from flask import Flask
-
+from application.config import Config
 from application.task_handler import TaskHandler
 from application.task_repository import MongoDBTaskRepository
 from application.errors import not_found, bad_data, server_failure
@@ -11,7 +11,7 @@ from application.task_service import TaskService
 
 def create_app():
     app = Flask(__name__)
-    mongo_client = MongoClient(host="localhost", port=27017)
+    mongo_client = MongoClient(host=Config.MONGO_HOST, port=Config.MONGO_PORT)
     repository = MongoDBTaskRepository(mongo_client.get_database("test_case"))
     task_handler = TaskHandler(MongoDBTaskRepository(mongo_client.get_database("test_case")))
     service = TaskService(repository, task_handler)
