@@ -18,6 +18,8 @@ def main(host, port, action, type, text, id):
         get_status(host, port, id)
     elif action == "GETRESULT":
         get_result(host, port, id)
+    else:
+        print(f"Unknown action {action}, try CREATE, GETSTATUS or GETRESULT")
 
 
 def create_task(host, port, type_, text):
@@ -28,7 +30,7 @@ def create_task(host, port, type_, text):
         else:
             print(f"id: {req.json()['id']}")
     except ConnectionError:
-        print("invalid address or port")
+        print("Invalid address or port")
 
 
 def get_status(host, port, id_):
@@ -37,7 +39,7 @@ def get_status(host, port, id_):
         ans = json.loads(ans)
         print(f"status: {ans.get('status')}")
     except ConnectionError:
-        print("invalid address or port")
+        print("Invalid address or port")
 
 
 def get_result(host, port, id_):
@@ -46,7 +48,7 @@ def get_result(host, port, id_):
         ans = json.loads(ans)
         print(f"result: {ans.get('result')}")
     except ConnectionError:
-        print("invalid address or port")
+        print("Invalid address or port")
 
 
 if __name__ == '__main__':
