@@ -10,6 +10,7 @@
 
 Также реализован клиент для взаимодействия с сервером, с помощью которого можно:
 ```bash
+pip install -r requirements.txt
 cd client
 ```
 ### Получить инструкцию по работе клиента
@@ -28,14 +29,14 @@ python3 client.py --port 8000 --action CREATE --type REVERSE --text qwerty
 ### Проверить статус выполнения задачи
 Запрос
 ```bash
-python3 client.py --port 8000 --action GETSTATUS --id yufg763wrg67wegege21
+python3 client.py --port 8000 --action GETSTATUS --id 54ea48f24b4140d5b2eb061a7c7c3b15
 ```
 Ответ: статус выполнения задачи
 
 ### Проверить результат выполнения задачи
 Запрос
 ```bash
-python3 client.py --port 8000 --action GETRESULT --id yufg763wrg67wegege21
+python3 client.py --port 8000 --action GETRESULT --id 54ea48f24b4140d5b2eb061a7c7c3b15
 ```
 Ответ: результат выполнения задачи<br>
 
