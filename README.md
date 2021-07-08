@@ -10,6 +10,7 @@
 
 Также реализован клиент для взаимодействия с сервером, с помощью которого можно:
 ```bash
+pip install -r requirements.txt
 cd client
 ```
 ### Получить инструкцию по работе клиента
@@ -28,14 +29,14 @@ python3 client.py --port 8000 --action CREATE --type REVERSE --text qwerty
 ### Проверить статус выполнения задачи
 Запрос
 ```bash
-python3 client.py --port 8000 --action GETSTATUS --id yufg763wrg67wegege21
+python3 client.py --port 8000 --action GETSTATUS --id 54ea48f24b4140d5b2eb061a7c7c3b15
 ```
 Ответ: статус выполнения задачи
 
 ### Проверить результат выполнения задачи
 Запрос
 ```bash
-python3 client.py --port 8000 --action GETRESULT --id yufg763wrg67wegege21
+python3 client.py --port 8000 --action GETRESULT --id 54ea48f24b4140d5b2eb061a7c7c3b15
 ```
 Ответ: результат выполнения задачи<br>
 
@@ -56,13 +57,16 @@ python -m venv venv
 source venv/bin/activate
 ```
 * Устанавливаем зависимости из requirements.txt
+```bash
+pip install -r requirements.txt
+```
 * Устанавливаем переменные окружения
 ```bash
 export FLASK_APP=wsgi.py
 ```
-* Запускаем http сервер командой flask run, и в другом окне терминала(с включенным виртуальным окружением)<br>
+* Запускаем http сервер командой flask run, и в другом окне терминала(с включенным виртуальным окружением) взаимодействуем через клиент<br> 
 
-В корне лежит скрипт test.py с тестом
+В корне лежит скрипт test.py с тестом сервера
 
 При локальном запуске api доступно на порту 5000, при  запуске из Docker
 на порту 8000
