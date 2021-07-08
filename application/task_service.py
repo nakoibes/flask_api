@@ -15,7 +15,7 @@ class TaskService:
         text = task_request.text
         type_ = task_request.type
         status = TaskStatus("IN_QUEUE")
-        task = Task(id=id_, text=text, type=type_, status=status, timestamp=time.time(), result=None)
+        task = Task(id=id_, text=text, type=type_, status=status, result=None)
         self._task_repository.save_task(task)
         self._handler.put_task((id_, text, type_))
         return id_

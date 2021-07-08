@@ -1,4 +1,4 @@
-FROM python:3.8
+FROM python:3.8-alpine
 WORKDIR /home/smart_tech_test_case
 COPY requirements.txt requirements.txt
 RUN pip install -r requirements.txt

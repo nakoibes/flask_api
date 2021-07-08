@@ -33,4 +33,3 @@ class Task:
     type: TaskType
     status: TaskStatus
     result: Optional[str]
-    timestamp: float

@@ -1,6 +1,5 @@
 from typing import Optional
 from pymongo.database import Database
-from pymongo import ASCENDING
 
 from application.task import Task, TaskStatus, TaskType
 
@@ -18,16 +17,6 @@ class MongoDBTaskRepository:
         if raw_task:
             return self._deserialize_task(raw_task)
 
-    def get_first_task_in_queue(self) -> Optional[tuple]:
-        tasks = list(
-            self._db.get_collection(self.collection).find({"status": TaskStatus.IN_QUEUE.value}).sort("timestamp",
-                                                                                                      direction=ASCENDING).limit(
-                1))
-        if tasks:
-            task = self._deserialize_task(tasks[0])
-            return task.type, task.text, task.id
-        return None, None, None
-
     @staticmethod
     def _deserialize_task(raw_task) -> Task:
         return Task(type=TaskType(raw_task["type"]),
@@ -35,13 +24,11 @@ class MongoDBTaskRepository:
                     text=raw_task["text"],
                     status=TaskStatus(raw_task["status"]),
                     result=raw_task["result"],
-                    timestamp=raw_task["timestamp"]
                     )
 
     @staticmethod
     def _task_serialize(task: Task):
-        return dict(id=task.id, text=task.text, type=task.type.value, status=task.status.value, result=task.result,
-                    timestamp=task.timestamp)
+        return dict(id=task.id, text=task.text, type=task.type.value, status=task.status.value, result=task.result)
 
     def delete_all(self):
         self._db.get_collection(self.collection).delete_many({})
