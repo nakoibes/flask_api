@@ -57,6 +57,9 @@ python -m venv venv
 source venv/bin/activate
 ```
 * Устанавливаем зависимости из requirements.txt
+* ```bash
+pip install -r requirements.txt
+```
 * Устанавливаем переменные окружения
 ```bash
 export FLASK_APP=wsgi.py
