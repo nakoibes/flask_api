@@ -37,7 +37,7 @@ export FLASK_APP=wsgi.py
 ### Также реализован клиент для взаимодействия с сервером.
 ### Перед запуском клиента
 ```bash
-pyhon3 -m venv venv
+python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 cd client
