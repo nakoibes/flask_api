@@ -8,6 +8,32 @@
 * **status** - статус выполнения задачи
 
 
+Проект поддерживает сборку в Docker
+* Клонируем проект
+```bash
+sudo docker-compose up -d
+```
+
+Для локальной работы без Docker, необходимы python 3.8+, MongoDB.
+* Клонируем проект
+* Создаем виртуальное окружение 
+```bash
+python -m venv venv
+```
+* Активируем виртуальное окружение
+```bash
+source venv/bin/activate
+```
+* Устанавливаем зависимости из requirements.txt
+```bash
+pip install -r requirements.txt
+```
+* Устанавливаем переменные окружения
+```bash
+export FLASK_APP=wsgi.py
+```
+* Запускаем http сервер командой flask run, и в другом окне терминала(с включенным виртуальным окружением) взаимодействуем через клиент<br> 
+
 Также реализован клиент для взаимодействия с сервером.
 ### Перед запуском клиента
 ```bash
@@ -40,32 +66,6 @@ python3 client.py --port 8000 --action GETSTATUS --id 54ea48f24b4140d5b2eb061a7c
 python3 client.py --port 8000 --action GETRESULT --id 54ea48f24b4140d5b2eb061a7c7c3b15
 ```
 Ответ: результат выполнения задачи<br>
-
-Проект поддерживает сборку в Docker
-* Клонируем проект
-```bash
-sudo docker-compose up -d
-```
-
-Для локальной работы без Docker, необходимы python 3.8+, MongoDB.
-* Клонируем проект
-* Создаем виртуальное окружение 
-```bash
-python -m venv venv
-```
-* Активируем виртуальное окружение
-```bash
-source venv/bin/activate
-```
-* Устанавливаем зависимости из requirements.txt
-```bash
-pip install -r requirements.txt
-```
-* Устанавливаем переменные окружения
-```bash
-export FLASK_APP=wsgi.py
-```
-* Запускаем http сервер командой flask run, и в другом окне терминала(с включенным виртуальным окружением) взаимодействуем через клиент<br> 
 
 В корне лежит скрипт test.py с тестом сервера
 
